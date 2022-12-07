@@ -24,15 +24,15 @@ type adminHandler struct {
 
 func New(e *echo.Echo, srv domain.Services) {
 	handler := adminHandler{srv: srv}
-	e.GET("/admin/pendaki", handler.GetPendaki(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                   // GET LIST PENDAKI
-	e.POST("/admin/pendaki", handler.AddClimber(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                  // ADD TOTAL CLIMBER
-	e.GET("/admin/product", handler.GetProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                   // GET LIST PRODUCT
-	e.POST("/admin/product", handler.AddProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                  // ADD NEW PRODUCT
-	e.PUT("/admin/product/:id_product", handler.EditProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))      // UPDATE DATA PRODUCT
-	e.DELETE("/admin/product/:id_product", handler.RemoveProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET")))) // DELETE PRODUCT
-	e.GET("/admin/ranger", handler.ShowAllRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                 // GET LIST RANGER
-	e.PUT("/admin/ranger/:id_ranger", handler.UpdateRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))       // EDIT RANGER
-	e.DELETE("/admin/ranger/:id_ranger", handler.RemoveRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))    // DELETE RANGER
+	e.GET("/admin/pendaki", handler.GetPendaki(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))), helper.Cache().Middleware())   // GET LIST PENDAKI
+	e.POST("/admin/pendaki", handler.AddClimber(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                               // ADD TOTAL CLIMBER
+	e.GET("/admin/product", handler.GetProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))), helper.Cache().Middleware())   // GET LIST PRODUCT
+	e.POST("/admin/product", handler.AddProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                               // ADD NEW PRODUCT
+	e.PUT("/admin/product/:id_product", handler.EditProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                   // UPDATE DATA PRODUCT
+	e.DELETE("/admin/product/:id_product", handler.RemoveProduct(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))              // DELETE PRODUCT
+	e.GET("/admin/ranger", handler.ShowAllRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))), helper.Cache().Middleware()) // GET LIST RANGER
+	e.PUT("/admin/ranger/:id_ranger", handler.UpdateRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                    // EDIT RANGER
+	e.DELETE("/admin/ranger/:id_ranger", handler.RemoveRanger(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))                 // DELETE RANGER
 }
 
 // GET LIST PENDAKI

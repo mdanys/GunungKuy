@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"GunungKuy/features/product/domain"
+	"GunungKuy/utils/helper"
 	"net/http"
 	"strconv"
 	"strings"
@@ -15,8 +16,8 @@ type productHandler struct {
 
 func New(e *echo.Echo, srv domain.Service) {
 	handler := productHandler{srv: srv}
-	e.GET("/product", handler.ShowAll())
-	e.GET("/product/:id_product", handler.ShowByID())
+	e.GET("/product", handler.ShowAll(), helper.Cache().Middleware())
+	e.GET("/product/:id_product", handler.ShowByID(), helper.Cache().Middleware())
 }
 
 // HANDLER TO SHOW ALL PRODUCT'S DATA

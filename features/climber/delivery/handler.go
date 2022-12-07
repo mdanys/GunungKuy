@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"GunungKuy/features/climber/domain"
+	"GunungKuy/utils/helper"
 	"net/http"
 
 	"github.com/labstack/echo/v4"
@@ -13,7 +14,7 @@ type climberHandler struct {
 
 func New(e *echo.Echo, srv domain.Services) {
 	handler := climberHandler{srv: srv}
-	e.GET("/climber", handler.ShowClimber()) // GET LIST PENDAKI
+	e.GET("/climber", handler.ShowClimber(), helper.Cache().Middleware()) // GET LIST PENDAKI
 }
 
 // HANDLER TO SHOW CLIMBER DATA
