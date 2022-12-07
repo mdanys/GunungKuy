@@ -2,6 +2,12 @@ package database
 
 import (
 	"GunungKuy/config"
+
+	ar "GunungKuy/features/admin/repository"
+	rr "GunungKuy/features/ranger/repository"
+
+	gr "GunungKuy/features/google/repository"
+	ur "GunungKuy/features/users/repository"
 	"fmt"
 
 	"github.com/labstack/gommon/log"
@@ -29,5 +35,12 @@ func InitDB(c *config.AppConfig) *gorm.DB {
 
 // FUNC TO MIGRATE TABLE TO DATABASE
 func MigrateDB(db *gorm.DB) {
-	db.AutoMigrate()
+	db.AutoMigrate(&ur.User{})
+	db.AutoMigrate(&rr.Ranger{})
+	db.AutoMigrate(&ur.Booking{})
+	db.AutoMigrate(&ur.Product{})
+	db.AutoMigrate(&ur.BookingProduct{})
+	db.AutoMigrate(&ar.Climber{})
+	db.AutoMigrate(&ar.Pesan{})
+	db.AutoMigrate(&gr.Code{})
 }
