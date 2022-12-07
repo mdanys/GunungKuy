@@ -7,6 +7,7 @@ require github.com/labstack/gommon v0.4.0
 require (
 	cloud.google.com/go/compute v1.12.1 // indirect
 	cloud.google.com/go/compute/metadata v0.2.1 // indirect
+	github.com/SporkHubr/echo-http-cache v0.0.0-20200706100054-1d7ae9f38029 // indirect
 	github.com/go-playground/locales v0.14.0 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-sql-driver/mysql v1.6.0 // indirect

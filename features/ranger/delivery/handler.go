@@ -2,6 +2,7 @@ package delivery
 
 import (
 	"GunungKuy/features/ranger/domain"
+	"GunungKuy/utils/helper"
 	"GunungKuy/utils/middlewares"
 	"net/http"
 	"os"
@@ -24,7 +25,7 @@ type rangerHandler struct {
 func New(e *echo.Echo, srv domain.Service) {
 	handler := rangerHandler{srv: srv}
 	e.POST("/ranger", handler.Apply(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))
-	e.GET("/ranger", handler.ShowAll(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))))
+	e.GET("/ranger", handler.ShowAll(), middleware.JWT([]byte(os.Getenv("JWT_SECRET"))), helper.Cache().Middleware())
 }
 
 // HANDLER TO POST APPLY FORM RANGER
