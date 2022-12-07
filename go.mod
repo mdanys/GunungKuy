@@ -26,6 +26,7 @@ require (
 	github.com/labstack/echo/v4 v4.9.1
 	github.com/mattn/go-colorable v0.1.11 // indirect
 	github.com/mattn/go-isatty v0.0.14 // indirect
+	github.com/midtrans/midtrans-go v1.3.6
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	golang.org/x/sys v0.1.0 // indirect
